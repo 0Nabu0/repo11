@@ -1,0 +1,849 @@
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~
+$ mkdir netauto
+mkdir: cannot create directory ‘netauto’: File exists
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~
+$ mkdir neetauto
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~
+$ cd neetauto
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto
+$ git init
+Initialized empty Git repository in C:/Users/MGL-pc/neetauto/.git/
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git add S1
+warning: in the working copy of 'S1', LF will be replaced by CRLF the next time Git touches it
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git commit -m "create S1"
+[master (root-commit) 80d7ee8] create S1
+ 1 file changed, 10 insertions(+)
+ create mode 100644 S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ cp S1 S2
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git add S2
+warning: in the working copy of 'S2', LF will be replaced by CRLF the next time Git touches it
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git commit -m "create S2"
+[master a1f3736] create S2
+ 1 file changed, 10 insertions(+)
+ create mode 100644 S2
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git log
+commit a1f3736857b171857318efb08dc891425ff4825c (HEAD -> master)
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 11:45:15 2024 +0800
+
+    create S2
+
+commit 80d7ee88543c43f6de688890977e751558fb70f0
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 11:44:17 2024 +0800
+
+    create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git log --all --decorate --oneline --graph
+* a1f3736 (HEAD -> master) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ alias graph="git log --all --decorate --oneline --graph"
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+* a1f3736 (HEAD -> master) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$  git branch SDN
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch auth
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch
+  SDN
+  auth
+* master
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+* a1f3736 (HEAD -> master, auth, SDN) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout SDN
+Switched to branch 'SDN'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ graph
+* a1f3736 (HEAD -> SDN, master, auth) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ git status
+On branch SDN
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ git add S1 ; git commit -m "SDN for S1"
+warning: in the working copy of 'S1', LF will be replaced by CRLF the next time Git touches it
+[SDN cf34442] SDN for S1
+ 1 file changed, 1 insertion(+)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ graph
+* cf34442 (HEAD -> SDN) SDN for S1
+* a1f3736 (master, auth) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ cat S1
+mgmt_ip: 10.0.0.1
+sdn_controller: 10.20.2.2
+vlans:
+  red:
+    id: 10
+  blue:
+    id: 20
+ports:
+ 1: [ 20 ]
+ 2: [ 10 ]
+ 3: [ 10, 20 ]
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ git checkout auth
+Switched to branch 'auth'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git branch
+  SDN
+* auth
+  master
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ graph
+* cf34442 (SDN) SDN for S1
+* a1f3736 (HEAD -> auth, master) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ cat S1
+mgmt_ip: 10.0.0.1
+vlans:
+  red:
+    id: 10
+  blue:
+    id: 20
+ports:
+ 1: [ 20 ]
+ 2: [ 10 ]
+ 3: [ 10, 20 ]
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git checkout SDN
+Switched to branch 'SDN'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ cat S1
+mgmt_ip: 10.0.0.1
+sdn_controller: 10.20.2.2
+vlans:
+  red:
+    id: 10
+  blue:
+    id: 20
+ports:
+ 1: [ 20 ]
+ 2: [ 10 ]
+ 3: [ 10, 20 ]
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (SDN)
+$ git checkout auth
+Switched to branch 'auth'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git status
+On branch auth
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git commit -a -m "auth for S1"
+[auth 59d52f2] auth for S1
+ 1 file changed, 1 insertion(+)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ graph
+* 59d52f2 (HEAD -> auth) auth for S1
+| * cf34442 (SDN) SDN for S1
+|/
+* a1f3736 (master) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git status
+On branch auth
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (auth)
+$ git checkout master
+Switched to branch 'master'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git diff master..SDN
+diff --git a/S1 b/S1
+index 20ba154..caac44d 100644
+--- a/S1
++++ b/S1
+@@ -1,4 +1,5 @@
+ mgmt_ip: 10.0.0.1
++sdn_controller: 10.20.2.2
+ vlans:
+   red:
+     id: 10
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git merge SDN
+Updating a1f3736..cf34442
+Fast-forward
+ S1 | 1 +
+ 1 file changed, 1 insertion(+)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ cat S1
+mgmt_ip: 10.0.0.1
+sdn_controller: 10.20.2.2
+vlans:
+  red:
+    id: 10
+  blue:
+    id: 20
+ports:
+ 1: [ 20 ]
+ 2: [ 10 ]
+ 3: [ 10, 20 ]
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+* 59d52f2 (auth) auth for S1
+| * cf34442 (HEAD -> master, SDN) SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch --merged
+  SDN
+* master
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch -d SDN
+Deleted branch SDN (was cf34442).
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch -d auth
+error: the branch 'auth' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D auth'
+hint: Disable this message with "git config advice.forceDeleteBranch false"
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git merge auth
+Auto-merging S1
+Merge made by the 'ort' strategy.
+ S1 | 1 +
+ 1 file changed, 1 insertion(+)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+*   ce3f653 (HEAD -> master) Merge branch 'auth'
+|\
+| * 59d52f2 (auth) auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch --merged
+  auth
+* master
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch -d auth
+Deleted branch auth (was 59d52f2).
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout -b dev
+Switched to a new branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (dev)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (dev)
+$ git diff
+diff --git a/S1 b/S1
+index 0b8460c..9f603db 100644
+--- a/S1
++++ b/S1
+@@ -1,12 +1,12 @@
+ mgmt_ip: 10.0.0.1
+ sdn_controller: 10.20.2.2
+ vlans:
+-  red:
++  green:
+     id: 10
+   blue:
+     id: 20
+ ports:
+- 1: [ 20 ]
+- 2: [ 10 ]
++ 1: [ 10 ]
++ 2: [ 20 ]
+  3: [ 10, 20 ]
+ auth_server: 10.30.3.3
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (dev)
+$ git commit -a -m "update S1 VLANS"
+[dev 8c6328e] update S1 VLANS
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (dev)
+$ git checkout master
+Switched to branch 'master'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git commit -a -m "update S1"
+[master a92424d] update S1
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+* a92424d (HEAD -> master) update S1
+| * 8c6328e (dev) update S1 VLANS
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git merge dev
+Auto-merging S1
+CONFLICT (content): Merge conflict in S1
+Automatic merge failed; fix conflicts and then commit the result.
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git merge --abort
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+* a92424d (HEAD -> master) update S1
+| * 8c6328e (dev) update S1 VLANS
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git merge dev
+Auto-merging S1
+CONFLICT (content): Merge conflict in S1
+Automatic merge failed; fix conflicts and then commit the result.
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git stat
+git: 'stat' is not a git command. See 'git --help'.
+
+The most similar commands are
+        status
+        stage
+        stash
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git add S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git status
+On branch master
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   S1
+
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master|MERGING)
+$ git commit
+[master 923cb3c] Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ graph
+*   923cb3c (HEAD -> master) Merge branch 'dev'
+|\
+| * 8c6328e (dev) update S1 VLANS
+* | a92424d update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git branch -d dev
+Deleted branch dev (was 8c6328e).
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git log
+commit 923cb3c4d2eaa5a7a57e1aa5b0d72b765be492e7 (HEAD -> master)
+Merge: a92424d 8c6328e
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:22:28 2024 +0800
+commit 923cb3c4d2eaa5a7a57e1aa5b0d72b765be492e7 (HEAD -> master)
+Merge: a92424d 8c6328e
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:22:28 2024 +0800
+
+    Merge branch 'dev'
+
+commit a92424d4ee49d984fcb45bbb9da97e415530fbce
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:16:28 2024 +0800
+
+    update S1
+
+commit 8c6328ef82067a59aad0dacf1ec11ff4d510222a
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:14:39 2024 +0800
+
+    update S1 VLANS
+
+commit ce3f653db61ab62e007f6e8cbf3cf17221beccd4
+Merge: cf34442 59d52f2
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:08:01 2024 +0800
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git log
+commit 923cb3c4d2eaa5a7a57e1aa5b0d72b765be492e7 (HEAD -> master)
+Merge: a92424d 8c6328e
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:22:28 2024 +0800
+
+    Merge branch 'dev'
+
+commit a92424d4ee49d984fcb45bbb9da97e415530fbce
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:16:28 2024 +0800
+
+    update S1
+
+commit 8c6328ef82067a59aad0dacf1ec11ff4d510222a
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:14:39 2024 +0800
+
+    update S1 VLANS
+
+commit ce3f653db61ab62e007f6e8cbf3cf17221beccd4
+Merge: cf34442 59d52f2
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:08:01 2024 +0800
+
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout master
+Already on 'master'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git log
+commit 923cb3c4d2eaa5a7a57e1aa5b0d72b765be492e7 (HEAD -> master)
+Merge: a92424d 8c6328e
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:22:28 2024 +0800
+
+    Merge branch 'dev'
+
+commit a92424d4ee49d984fcb45bbb9da97e415530fbce
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:16:28 2024 +0800
+
+    update S1
+
+commit 8c6328ef82067a59aad0dacf1ec11ff4d510222a
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:14:39 2024 +0800
+
+    update S1 VLANS
+
+commit ce3f653db61ab62e007f6e8cbf3cf17221beccd4
+Merge: cf34442 59d52f2
+Author: Nasaa bn <nabunaska@gmail.com>
+Date:   Mon Mar 25 12:08:01 2024 +0800
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout a92424
+Note: switching to 'a92424'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at a92424d update S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a92424d...))
+$ graph
+*   923cb3c (master) Merge branch 'dev'
+|\
+| * 8c6328e update S1 VLANS
+* | a92424d (HEAD) update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a92424d...))
+$ git checkout a1f3736
+Previous HEAD position was a92424d update S1
+HEAD is now at a1f3736 create S2
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ graph
+*   923cb3c (master) Merge branch 'dev'
+|\
+| * 8c6328e update S1 VLANS
+* | a92424d update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 (HEAD) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ git checkout master
+Previous HEAD position was a1f3736 create S2
+Switched to branch 'master'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout a1f3736
+Note: switching to 'a1f3736'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at a1f3736 create S2
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ graph
+*   923cb3c (master) Merge branch 'dev'
+|\
+| * 8c6328e update S1 VLANS
+* | a92424d update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 (HEAD) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ git branch stage
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ graph
+*   923cb3c (master) Merge branch 'dev'
+|\
+| * 8c6328e update S1 VLANS
+* | a92424d update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 (HEAD, stage) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto ((a1f3736...))
+$ git checkout stage
+Switched to branch 'stage'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (stage)
+$ graph
+*   923cb3c (master) Merge branch 'dev'
+|\
+| * 8c6328e update S1 VLANS
+* | a92424d update S1
+|/
+*   ce3f653 Merge branch 'auth'
+|\
+| * 59d52f2 auth for S1
+* | cf34442 SDN for S1
+|/
+* a1f3736 (HEAD -> stage) create S2
+* 80d7ee8 create S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (stage)
+$ git checkout master
+Switched to branch 'master'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git checkout stage
+error: Your local changes to the following files would be overwritten by checkout:
+        S1
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash
+Saved working directory and index state WIP on master: 923cb3c Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash
+No local changes to save
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ vi S1
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash
+Saved working directory and index state WIP on master: 923cb3c Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash list
+stash@{0}: WIP on master: 923cb3c Merge branch 'dev'
+stash@{1}: WIP on master: 923cb3c Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash list -p
+stash@{0}: WIP on master: 923cb3c Merge branch 'dev'
+
+diff --git a/S1 b/S1
+index 6689f25..a051f3f 100644
+--- a/S1
++++ b/S1
+@@ -9,4 +9,3 @@ ports:
+  1: [ 10 ]
+  2: [ 20 ]
+  3: [ 10, 20 ]
+-auth_server: 10.30.3.3
+stash@{1}: WIP on master: 923cb3c Merge branch 'dev'
+
+diff --git a/S1 b/S1
+index 6689f25..6ff9468 100644
+--- a/S1
++++ b/S1
+@@ -5,6 +5,8 @@ vlans:
+     id: 10
+   blue:
+     id: 20
++  yellow:
++    id: 30:
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash apply
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git diff
+diff --git a/S1 b/S1
+index 6689f25..a051f3f 100644
+--- a/S1
++++ b/S1
+@@ -9,4 +9,3 @@ ports:
+  1: [ 10 ]
+  2: [ 20 ]
+  3: [ 10, 20 ]
+-auth_server: 10.30.3.3
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git commit -a -m "remove auth"
+[master 50b5435] remove auth
+ 1 file changed, 1 deletion(-)
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash list
+stash@{0}: WIP on master: 923cb3c Merge branch 'dev'
+stash@{1}: WIP on master: 923cb3c Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash apply stash@{1}
+Auto-merging S1
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   S1
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git diff
+diff --git a/S1 b/S1
+index a051f3f..ec9a2ab 100644
+--- a/S1
++++ b/S1
+@@ -5,6 +5,8 @@ vlans:
+     id: 10
+   blue:
+     id: 20
++  yellow:
++    id: 30:
+ ports:
+  1: [ 10 ]
+  2: [ 20 ]
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash list
+stash@{0}: WIP on master: 923cb3c Merge branch 'dev'
+stash@{1}: WIP on master: 923cb3c Merge branch 'dev'
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash save "add yellow vlan"
+Saved working directory and index state On master: add yellow vlan
+
+MGL-pc@DESKTOP-0IAB8K3 MINGW64 ~/neetauto (master)
+$ git stash list
+stash@{0}: On master: add yellow vlan
+stash@{1}: WIP on master: 923cb3c Merge branch 'dev'
+stash@{2}: WIP on master: 923cb3c Merge branch 'dev'
+
